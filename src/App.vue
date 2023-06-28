@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import PVButton from "./components/PVButton.vue";
+</script>
+
 <template>
-  <h1>PinesVue</h1>
+  <PVButton>Test</PVButton>
 </template>
