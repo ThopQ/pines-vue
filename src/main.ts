@@ -1,5 +1,6 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import "./style.css";
 
-createApp(App).mount('#app')
+import PVButton from "./components/PVButton.vue";
+import PVLoader from "./components/PVLoader.vue";
+
+export { PVButton, PVLoader };
