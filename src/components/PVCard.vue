@@ -19,6 +19,8 @@ const props = defineProps({
 const width = computed(() => {
   if (props.maxWidth != "full") {
     return "max-w-" + props.maxWidth;
+  } else {
+    return "w-full";
   }
 });
 
@@ -34,7 +36,7 @@ const styles = computed(() => {
 </script>
 
 <template>
-  <div class="w-full overflow-hidden rounded-lg" :class="[styles]">
+  <div :class="[styles]" class="overflow-hidden rounded-lg">
     <slot name="image" />
 
     <div class="p-7">
@@ -50,7 +52,7 @@ const styles = computed(() => {
         <slot name="card-body" />
       </div>
 
-      <div v-if="$slots['card-actions']" class="flex">
+      <div v-if="$slots['card-actions']" class="flex gap-2">
         <slot name="card-actions" />
       </div>
     </div>
