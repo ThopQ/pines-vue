@@ -10,6 +10,10 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  horizontal: {
+    type: Boolean,
+    default: false,
+  },
   backgroundColor: {
     type: String as () => "base",
     default: "base",
@@ -36,24 +40,42 @@ const styles = computed(() => {
 </script>
 
 <template>
-  <div :class="[styles]" class="overflow-hidden rounded-lg">
-    <slot name="image" />
+  <div
+    :class="[styles, { 'md:flex-row': props.horizontal }]"
+    class="flex flex-col overflow-hidden rounded-lg"
+  >
+    <div
+      v-if="$slots['media']"
+      class="flex flex-none flex-col items-center justify-center md:justify-start"
+      :class="{
+        'sm:px-7 sm:pt-7':
+          $slots['title'] || $slots['body'] || $slots['actions'],
+      }"
+    >
+      <slot name="media" />
+    </div>
 
-    <div class="p-7">
-      <div class="mb-2 text-lg font-bold leading-none tracking-tight">
-        <slot name="card-title" />
+    <div
+      v-if="$slots['title'] || $slots['body'] || $slots['actions']"
+      class="p-7"
+    >
+      <div
+        v-if="$slots['title']"
+        class="mb-2 text-lg font-bold leading-none tracking-tight"
+      >
+        <slot name="title" />
       </div>
 
       <div
-        v-if="$slots['card-body']"
+        v-if="$slots['body']"
         class="text-neutral-500"
-        :class="{ 'mb-5': $slots['card-actions'] }"
+        :class="{ 'mb-5': $slots['actions'] }"
       >
-        <slot name="card-body" />
+        <slot name="body" />
       </div>
 
-      <div v-if="$slots['card-actions']" class="flex gap-2">
-        <slot name="card-actions" />
+      <div v-if="$slots['actions']" class="flex gap-2">
+        <slot name="actions" />
       </div>
     </div>
 
