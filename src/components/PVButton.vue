@@ -19,6 +19,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  block: {
+    type: Boolean,
+    default: false,
+  },
   disabled: {
     type: Boolean,
     default: false,
@@ -89,7 +93,10 @@ const styles = computed(() => {
   <button
     :type="props.type"
     class="pv-button inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium tracking-wide"
-    :class="[styles, { 'cursor-not-allowed': props.disabled }]"
+    :class="[
+      styles,
+      { 'cursor-not-allowed': props.disabled, 'w-full': props.block },
+    ]"
     :disabled="props.disabled"
   >
     <PVLoader v-if="props.loading" :color="props.color" />
