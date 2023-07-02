@@ -1,7 +1,7 @@
 {
   "name": "pines-vue",
   "author": "Thomas Iseli",
-  "description": "A Vue3 Component Library based on Pines by DevDojo",
+  "description": "An unofficial Vue3 Component Library based on Pines by DevDojo",
   "keywords": [
     "vue",
     "vue3",
