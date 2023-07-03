@@ -39,6 +39,8 @@ const props = defineProps({
   },
 });
 
+const emits = defineEmits(["click"]);
+
 const styles = computed(() => {
   if (props.outlined) {
     switch (props.color) {
@@ -98,6 +100,7 @@ const styles = computed(() => {
       { 'cursor-not-allowed': props.disabled, 'w-full': props.block },
     ]"
     :disabled="props.disabled"
+    @click="emits('click')"
   >
     <PVLoader v-if="props.loading" :color="props.color" />
 

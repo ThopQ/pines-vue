@@ -7,6 +7,8 @@ const props = defineProps({
   },
 });
 
+const emits = defineEmits(["click"]);
+
 const hover = ref(false);
 </script>
 
@@ -17,6 +19,7 @@ const hover = ref(false);
     :class="{ 'bg-white shadow': props.active, 'bg-neutral-200': hover }"
     @mouseover="hover = true"
     @mouseleave="hover = false"
+    @click="emits('click')"
   >
     <slot />
   </button>
