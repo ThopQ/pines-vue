@@ -21,7 +21,7 @@ const props = defineProps({
   },
 });
 
-const emits = defineEmits(["update:modelValue"]);
+const emits = defineEmits(["update:model-value"]);
 
 const width = computed(() => {
   if (props.maxWidth != "full") {
@@ -35,7 +35,7 @@ const activeTabIndex = ref(props.modelValue);
 
 function changeTab(index: number) {
   activeTabIndex.value = index;
-  emits("update:modelValue", activeTabIndex.value);
+  emits("update:model-value", activeTabIndex.value);
 }
 </script>
 
