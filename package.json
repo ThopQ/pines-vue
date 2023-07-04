@@ -1,5 +1,5 @@
 {
-  "name": "pines-vue",
+  "name": "@thopq/pines-vue",
   "author": "Thomas Iseli",
   "description": "An unofficial Vue3 Component Library based on Pines by DevDojo",
   "keywords": [
@@ -11,12 +11,19 @@
   ],
   "private": false,
   "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thopq/pines-vue.git"
+  },
   "type": "module",
   "module": "./dist/pines-vue.js",
   "types": "./dist/main.d.ts",
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "@thopq:registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
