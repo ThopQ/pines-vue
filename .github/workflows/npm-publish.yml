@@ -1,48 +1,24 @@
-name: Build and Publish Library
-
+name: Deploy to NPM
 on:
-  workflow_dispatch:
   release:
-    types: [created, edited]
+    types:
+      - "published"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 6.0.2
-      - run: pnpm i
-      - run: pnpm build
-      - name: save build artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist
-          path: ./packages/pines-vue/dist
-  publish-npm:
+  publish-pkg:
+    name: pines-vue
     runs-on: ubuntu-latest
     permissions:
       packages: write
-    needs: build
+      contents: read
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
-          registry-url: "https://npm.pkg.github.com"
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 6.0.2
-      - name: download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: dist
-          path: ./packages/pines-vue/dist
-      - run: pnpm publish --no-git-checks --registry=https://npm.pkg.github.com
-        working-directory: ./packages/pines-vue
+          node-version: 19.0.0
+          registry-url: https://npm.pkg.github.com
+      - run: npm ci
+      - run: npm run build
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
