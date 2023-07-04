@@ -1,8 +1,8 @@
 name: Deploy to NPM
 on:
+  workflow_dispatch:
   release:
-    types:
-      - "published"
+    types: [created, edited]
 
 jobs:
   publish-pkg:
