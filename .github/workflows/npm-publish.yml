@@ -17,7 +17,7 @@ jobs:
         with:
           version: 6.0.2
       - run: pnpm i
-      - run: pnpm lib build
+      - run: pnpm build
       - run: save build artifact
       - name: save build artifact
         uses: actions/upload-artifact@v3
